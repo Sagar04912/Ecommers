@@ -13,6 +13,8 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 
 @Entity
 @Table(name = "Users")
@@ -21,16 +23,20 @@ public class Users implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-
+    
     @JsonProperty("name")
     private String name;
-
+    
+    @NotBlank(message = "Username is required")
     @JsonProperty("username")
     private String userName;
-
+    
+    @NotBlank(message = "Password is required")
+    @Size(min = 8, message = "Password must be at least 8 Characters.")
     @JsonProperty("password")
     private String password;
 
+    @NotBlank(message = "Role is required")
     @JsonProperty("role")
     private String userRole;
 

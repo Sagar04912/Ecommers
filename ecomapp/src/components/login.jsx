@@ -2,8 +2,9 @@ import { useState } from "react";
 
 const Login = () => {
         const [formData, setFormData] = useState({
-            email: '',
-            password: ''
+            username: '',
+            password: '',
+            role: ''
         });
     
         const handleChange = (e) => {
@@ -12,10 +13,27 @@ const Login = () => {
                 [e.target.name]: e.target.value
             });
         };
-        const handleSubmit = (e) => {
+        const handleSubmit = async (e) => {
             e.preventDefault();
-            // Handle login logic here
-            console.log('Login:', formData);
+            try {
+                const res = await fetch('http://localhost:8080/api/v1/login', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(formData)
+                });
+                const data = await res.json();
+                if (res.ok) {
+                    // Handle successful login (e.g., save token, redirect)
+                    console.log('Login successful:', data);
+                } else {
+                    // Handle login error
+                    console.log('Login failed:', data.message || 'Error');
+                }
+            } catch (error) {
+                console.log('Network error:', error);
+            }
         };
 
         return (
@@ -23,10 +41,11 @@ const Login = () => {
                 <h2>Login</h2>
                 <form onSubmit={handleSubmit}>
                     <div>
-                    <label>Email:</label>
+                    <label>Username:</label>
                     <input 
-                        type="email" 
-                        value={formData.email} 
+                        type="text" 
+                        name="username" // Add this
+                        value={formData.username} 
                         onChange={handleChange} 
                         required 
                     />
@@ -35,6 +54,7 @@ const Login = () => {
                     <label>Password:</label>
                     <input 
                         type="password" 
+                        name="password" // Add this
                         value={formData.password} 
                         onChange={handleChange} 
                         required 
@@ -44,6 +64,7 @@ const Login = () => {
                     <label>Role:</label>
                     <input 
                         type="text" 
+                        name="role" // Add this
                         value={formData.role} 
                         onChange={handleChange} 
                         required 
