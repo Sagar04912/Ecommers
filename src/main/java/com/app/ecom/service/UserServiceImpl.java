@@ -1,5 +1,7 @@
 package com.app.ecom.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -25,6 +27,17 @@ public class UserServiceImpl implements UserService {
 	public Users createUser(Users user) {
 		user.setPassword(passwordEncoder.encode(user.getPassword()));
 		return userRepo.save(user);
+	}
+
+	@Override
+	public List<Users> getAllUser() {
+		// TODO Auto-generated method stub
+		return userRepo.findAll();
+	}
+
+	@Override
+	public void deleteUserById(long id) {
+		 userRepo.deleteById(id);
 	}
 
 }

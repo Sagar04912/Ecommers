@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Login from './components/login';
 import Register from './components/Register';
+import GetAllUsers from './components/getAllUsers';
 
 const App = () => {
   const [view, setView] = useState(null);
@@ -11,11 +12,13 @@ const App = () => {
       <div>
         <button onClick={() => setView('login')}>Login</button>
         <button onClick={() => setView('register')}>Register</button>
+        <button onClick={() => setView('getAllUsers')}>Get All Users</button>
       </div>
 
       <div style={{ marginTop: '20px' }}>
         {view === 'login' && <Login />}
         {view === 'register' && <Register />}
+        {view === 'getAllUsers' && <GetAllUsers />}
       </div>
     </div>
   );
