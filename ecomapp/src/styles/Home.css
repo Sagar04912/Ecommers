@@ -1,0 +1,21 @@
+.navbar-link {
+  background: #4caf50;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 8px 18px;
+  margin-right: 8px;
+  font-size: 15px;
+  font-weight: 500;
+  text-decoration: none;
+  transition: background 0.2s;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.07);
+  cursor: pointer;
+  display: inline-block;
+}
+.navbar-link:last-child {
+  margin-right: 0;
+}
+.navbar-link:hover {
+  background: #388e3c;
+}

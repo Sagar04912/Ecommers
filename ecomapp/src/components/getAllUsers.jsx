@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import '../styles/GetAllUsers.css';
 
 const GetAllUsers = () => {
   const [users, setUsers] = useState([]);
