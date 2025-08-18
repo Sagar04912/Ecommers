@@ -1,0 +1,23 @@
+.getallusers-container {
+  background: #fff;
+  padding: 40px;
+  border-radius: 12px;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+  width: 600px;
+  margin: auto;
+}
+.getallusers-title {
+  text-align: center;
+  color: #333;
+  margin-bottom: 30px;
+}
+.getallusers-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.getallusers-table th,
+.getallusers-table td {
+  border: 1px solid #ccc;
+  padding: 10px;
+  text-align: left;
+}

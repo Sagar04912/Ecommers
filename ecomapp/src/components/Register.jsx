@@ -1,27 +1,24 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
+import '../styles/Register.css';
 
 const Register = () => {
     const [formData, setFormData] = useState({
-        name: '',   
+        name: '',
         username: '',
         password: '',
         role: ''
     });
+    const [notification, setNotification] = useState('');
 
     const handleChange = (e) => {
-        const { name, value } = e.target;
-        if (!name) return; // Ignore inputs without a name
         setFormData({
             ...formData,
-            [name]: value
+            [e.target.name]: e.target.value
         });
     };
 
-
     const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log('Registered:', formData);
-
         try {
             const response = await fetch('http://localhost:8080/api/v1/register', {
                 method: 'POST',
@@ -30,58 +27,76 @@ const Register = () => {
                 },
                 body: JSON.stringify(formData)
             });
-            const result = await response.text;
-            console.log('Server response:', result);
+            if (response.ok) {
+                setNotification('User registered successfully!');
+                setFormData({ name: '', username: '', password: '', role: '' });
+            } else {
+                setNotification('Registration failed.');
+            }
+            setTimeout(() => setNotification(''), 3000); // Clear after 3 seconds
         } catch (error) {
-            console.error('Error registering:', error);
+            setNotification('Error registering user.');
+            setTimeout(() => setNotification(''), 3000);
         }
     };
 
     return (
-        <div className="container">
-            <h2>Register</h2>
+        <div className="register-container">
+            <h2 className="register-title">Register</h2>
+            {notification && (
+                <div className="register-notification">{notification}</div>
+            )}
             <form onSubmit={handleSubmit}>
-                <div>
-                    <label>Name:</label>
-                    <input 
+                <div className="register-form-group">
+                    <label className="register-label">Name:</label>
+                    <input
                         type="text"
-                        name="name" 
-                        value={formData.name} 
-                        onChange={handleChange} 
-                        required 
+                        name="name"
+                        value={formData.name}
+                        onChange={handleChange}
+                        required
+                        className="register-input"
                     />
                 </div>
-                <div>
-                    <label>Username:</label>
-                    <input 
+                <div className="register-form-group">
+                    <label className="register-label">Username:</label>
+                    <input
                         type="text"
-                        name="username" 
-                        value={formData.username} 
-                        onChange={handleChange} 
-                        required 
+                        name="username"
+                        value={formData.username}
+                        onChange={handleChange}
+                        required
+                        className="register-input"
                     />
                 </div>
-                <div>
-                    <label>Password:</label>
-                    <input 
+                <div className="register-form-group">
+                    <label className="register-label">Password:</label>
+                    <input
                         type="password"
-                        name="password" 
-                        value={formData.password} 
-                        onChange={handleChange} 
-                        required 
+                        name="password"
+                        value={formData.password}
+                        onChange={handleChange}
+                        required
+                        className="register-input"
                     />
                 </div>
-                <div>
-                    <label>Role:</label>
-                    <input 
+                <div className="register-form-group role">
+                    <label className="register-label">Role:</label>
+                    <input
                         type="text"
-                        name="role" 
-                        value={formData.role} 
-                        onChange={handleChange} 
-                        required 
+                        name="role"
+                        value={formData.role}
+                        onChange={handleChange}
+                        required
+                        className="register-input"
                     />
                 </div>
-                <button type="submit">Register</button>
+                <button
+                    type="submit"
+                    className="register-button"
+                >
+                    Register
+                </button>
             </form>
         </div>
     );

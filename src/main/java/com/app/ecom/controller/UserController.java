@@ -55,7 +55,9 @@ public class UserController {
 	public ResponseEntity<String> login(@Valid @RequestBody Users user){
 		authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(user.getUsername(), user.getPassword()));
 		final UserDetails userDatails = (UserDetails) userRepository.findByUserName(user.getUsername()).orElseThrow(()-> new RuntimeException("User not found"));
+		System.out.println("inside Login");
 		String jwt = jwtUtil.generateToken(userDatails.getUsername());
+		System.out.println("inside login1" + jwt);
 		return ResponseEntity.ok(jwt);
 	}
 	

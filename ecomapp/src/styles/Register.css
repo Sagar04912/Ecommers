@@ -1,0 +1,58 @@
+.register-container {
+  background: #fff;
+  padding: 40px;
+  border-radius: 12px;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+  width: 400px;
+  margin: auto;
+}
+
+.register-title {
+  text-align: center;
+  color: #333;
+  margin-bottom: 30px;
+}
+
+.register-notification {
+  color: #388e3c;
+  margin-bottom: 10px;
+  text-align: center;
+  font-weight: bold;
+}
+
+.register-form-group {
+  margin-bottom: 18px;
+}
+
+.register-label {
+  display: block;
+  margin-bottom: 6px;
+  color: #333;
+  font-weight: 500;
+}
+
+.register-input {
+  width: 100%;
+  padding: 10px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 15px;
+}
+
+.register-form-group.role {
+  margin-bottom: 24px;
+}
+
+.register-button {
+  width: 100%;
+  background: #4caf50;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 12px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.07);
+  transition: background 0.2s;
+}
